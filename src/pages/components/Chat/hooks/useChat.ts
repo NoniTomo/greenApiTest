@@ -66,7 +66,7 @@ export const useChatComponent = () => {
     let isMounted = true
 
     const fetchNotifications = async () => {
-      if (!isMounted) return // Остановка, если компонент размонтирован
+      if (!isMounted) return
 
       try {
         const response = await getReceiveNotificationQuery.refetch()
@@ -83,19 +83,20 @@ export const useChatComponent = () => {
             ...prevMessages
           ])
         }
-        await deleteNotificationMutation.mutateAsync({
-          params: {
-            apiTokenInstance: (userContext.value as UserData).apiTokenInstance,
-            apiUrl: (userContext.value as UserData).apiUrl,
-            idInstance: (userContext.value as UserData).idInstance,
-            receiptId: response.data.data.receiptId
-          }
-        })
+        if (response.data?.data?.receiptId)
+          await deleteNotificationMutation.mutateAsync({
+            params: {
+              apiTokenInstance: (userContext.value as UserData).apiTokenInstance,
+              apiUrl: (userContext.value as UserData).apiUrl,
+              idInstance: (userContext.value as UserData).idInstance,
+              receiptId: response.data.data.receiptId
+            }
+          })
       } catch (error) {
         console.error('Ошибка при получении уведомления:', error)
       }
 
-      setTimeout(fetchNotifications, 2000) // Запускаем следующий вызов после задержки
+      setTimeout(fetchNotifications, 2000)
     }
 
     fetchNotifications()
@@ -106,7 +107,7 @@ export const useChatComponent = () => {
   }, [])
 
   return {
-    state: { form, messages, userContext },
+    state: { form, messages, userContext, chatContext },
     functions: { onSubmit }
   }
 }

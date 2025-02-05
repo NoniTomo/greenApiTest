@@ -34,8 +34,8 @@ interface GetReceiveNotificationResponse {
     }
     messageData: {
       typeMessage: 'textMessage'
-      textMessageData: {
-        textMessage: string
+      extendedTextMessageData: {
+        text: string
       }
     }
   }

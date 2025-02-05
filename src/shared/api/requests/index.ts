@@ -1,0 +1,5 @@
+export * from './deleteNotification'
+export * from './getReceiveNotification'
+export * from './getWaInstance'
+export * from './getStateInstance'
+export * from './postSendMessage'

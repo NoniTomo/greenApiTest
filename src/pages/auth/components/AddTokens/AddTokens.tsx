@@ -27,7 +27,8 @@ export const AddTokens = () => {
           error={state.form.formState.errors.idInstance?.message}
           isDisabled={false}
           isRequired={true}
-          classNameInput="bg-zinc-700 "
+          classNameInput="bg-zinc-700"
+          type="password"
         />
         <TextField
           id="apiTokenInstance"
@@ -39,6 +40,7 @@ export const AddTokens = () => {
           isDisabled={false}
           isRequired={true}
           classNameInput="bg-zinc-700 "
+          type="password"
         />
         <Button className="p-5 rounded-xl bg-green-700 hover:bg-green-800" type="submit">
           Далее

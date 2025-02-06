@@ -1,7 +1,5 @@
 import { useDeleteNotificationMutation, useGetReceiveNotificationQuery } from '@/shared/api'
-import { useChatsStore } from '@/shared/store/chats'
-import { useMessagesStore } from '@/shared/store/messages'
-import { useUserStore } from '@/shared/store/user'
+import { useChatsStore, useMessagesStore, useUserStore } from '@/shared/store'
 import React from 'react'
 
 export const useMain = () => {
@@ -39,7 +37,7 @@ export const useMain = () => {
       try {
         const response = await getReceiveNotificationQuery.refetch()
         const data = response.data?.data
-        if (data) {
+        if (data && data.body.messageData) {
           const text =
             'extendedTextMessageData' in data.body.messageData
               ? data.body.messageData.extendedTextMessageData.text

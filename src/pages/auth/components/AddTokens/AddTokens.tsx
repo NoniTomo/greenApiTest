@@ -1,5 +1,4 @@
-import { Button } from '@/shared/components/ui/button'
-import { TextField } from '@/shared/components'
+import { Button, TextField } from '@/shared/components'
 import { useAddTokens } from './hooks/useAddTokens'
 
 export const AddTokens = () => {

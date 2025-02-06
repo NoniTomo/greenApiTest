@@ -1,8 +1,6 @@
 import { usePostSendMessageMutation } from '@/shared/api'
 
-import { useChatsStore } from '@/shared/store/chats'
-import { useMessagesStore } from '@/shared/store/messages'
-import { useUserStore } from '@/shared/store/user'
+import { useChatsStore, useMessagesStore, useUserStore } from '@/shared/store'
 import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
 

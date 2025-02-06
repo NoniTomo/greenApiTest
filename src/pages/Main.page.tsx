@@ -1,21 +1,20 @@
-import NewChatIcon from '@/assets/icons/newChat.svg?react'
-import SidebarIcon from '@/assets/icons/sidebar.svg?react'
+import { NavLink, Outlet } from 'react-router-dom'
+import clsx from 'clsx'
 
-import { NewChatForm } from '@/shared/components'
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
-} from '@/shared/components/ui/dialog'
-
-import clsx from 'clsx'
-import { NavLink } from 'react-router-dom'
-import { Outlet } from 'react-router-dom'
+  DialogTrigger,
+  Button,
+  NewChatForm
+} from '@/shared/components'
 import { useMain } from './hooks/useMain'
-import { Button } from '@/shared/components'
+
+import NewChatIcon from '@/assets/icons/newChat.svg?react'
+import SidebarIcon from '@/assets/icons/sidebar.svg?react'
 
 export const Main = () => {
   const { state, functions } = useMain()

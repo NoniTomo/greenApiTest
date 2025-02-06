@@ -1,8 +1,8 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom'
 
-import { ROUTES } from '../constants'
-import { useUserStore } from '../store/user'
+import { ROUTES } from '@/shared/constants'
+import { useUserStore } from '@/shared/store'
 
 export interface AuthCheckProps {
   children: React.ReactNode

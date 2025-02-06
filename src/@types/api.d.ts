@@ -9,16 +9,16 @@ interface GetStateInstanceResponse {
   stateInstance: StateInstance
 }
 
-interface GetReceiveNotificationResponse {
+type GetReceiveNotificationResponse = {
   receiptId: number
   body: {
-    typeWebhook: 'incomingMessageReceived'
+    typeWebhook: string
     instanceData: {
       idInstance: number
       wid: string
       typeInstance: string
     }
-    timestamp: 1588091580
+    timestamp: number
     idMessage: string
     senderData: {
       chatId: string
@@ -26,7 +26,7 @@ interface GetReceiveNotificationResponse {
       senderName: string
       senderContactName: string
     }
-    messageData:
+    messageData?:
       | {
           typeMessage: string
           extendedTextMessageData: {
@@ -40,7 +40,7 @@ interface GetReceiveNotificationResponse {
           }
         }
   }
-}
+} | null
 
 interface SendMessageRequest {
   chatId: string

@@ -24,7 +24,7 @@ export const NewChatForm = ({ onSubmitAction }: NewChatFormProps) => {
               `+${COUNTRY_NUMBERS[state.countryValue].code} ${COUNTRY_NUMBERS[state.countryValue].templatePhone}`,
               {
                 required: 'Поле обязательное',
-                validate: (value) => (validateMask(value) ? true : 'Введите номер телефона полностью')
+                validate: (value) => (validateMask(value) ? true : 'Некорректный номер телефона')
               }
             )}
             type="email"

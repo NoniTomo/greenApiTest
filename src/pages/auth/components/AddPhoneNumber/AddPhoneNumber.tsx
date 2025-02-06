@@ -1,6 +1,5 @@
-import { Button } from '@/shared/components/ui/button'
+import { Button, NewChatForm } from '@/shared/components'
 import { useStage } from '../../contexts'
-import { NewChatForm } from '@/shared/components'
 import { useNavigate } from 'react-router-dom'
 import { ROUTES } from '@/shared/constants'
 

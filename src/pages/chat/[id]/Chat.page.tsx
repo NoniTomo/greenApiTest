@@ -12,7 +12,7 @@ export const Chat = () => {
       <header className="p-5 flex gap-2 border-b-[1px]">
         <p className="my-auto text-lg">{state.chat.phone}</p>
       </header>
-      <div className="w-full h-full overflow-auto flex flex-col justify-end gap-3 p-5 bg-[url('/public/images/chatBackground.png')] bg-no-repeat bg-cover">
+      <div className="w-full h-full overflow-auto flex flex-col justify-end gap-3 p-5 bg-[url('/public/images/chatBackground.png')] bg-no-repeat bg-cover text-background">
         {state.messages.map((message) => (
           <div
             key={message.idMessage}
@@ -44,7 +44,7 @@ export const Chat = () => {
           id="apiUrl"
           isDisabled={false}
           isRequired={true}
-          classNameInput="bg-zinc-700 text-background"
+          classNameInput="bg-zinc-700"
         />
         <Button
           type="submit"

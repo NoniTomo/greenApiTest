@@ -1,7 +1,7 @@
 import { useStage } from '../../../contexts'
 import { useForm } from 'react-hook-form'
 import { useGetStateInstanceMutation, useGetWaInstanceMutation } from '@/shared/api/hooks'
-import { useUserStore } from '@/shared/store/user'
+import { useUserStore } from '@/shared/store'
 
 export const useAddTokens = () => {
   const stage = useStage()

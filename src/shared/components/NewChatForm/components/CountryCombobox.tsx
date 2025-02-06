@@ -31,7 +31,7 @@ export function CountryCombobox({ className, value, setValue }: CountryComboboxP
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={`justify-between bg-zinc-700 hover:bg-zinc-700 hover:text-background ${className}`}
+          className={`justify-between bg-zinc-700 hover:bg-zinc-700 hover:text-foreground ${className}`}
         >
           {value
             ? COUNTRY_COMBOBOX.find((country) => country.value === value)?.label
@@ -52,6 +52,7 @@ export function CountryCombobox({ className, value, setValue }: CountryComboboxP
                     setValue(currentValue as Countries)
                     setOpen(false)
                   }}
+                  className="text-background hover:text-background"
                 >
                   {country.label}
                   <Check

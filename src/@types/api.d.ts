@@ -1,9 +1,3 @@
-interface UserData {
-  apiUrl: string
-  idInstance: string
-  apiTokenInstance: string
-  phone: string
-}
 interface ChatData {
   chatId: string
   message: string
@@ -16,7 +10,7 @@ interface GetStateInstanceResponse {
 }
 
 interface GetReceiveNotificationResponse {
-  receiptId: 1234567
+  receiptId: number
   body: {
     typeWebhook: 'incomingMessageReceived'
     instanceData: {

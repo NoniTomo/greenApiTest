@@ -1,19 +1,13 @@
 import { RouterProvider } from 'react-router-dom'
 
-import { ChatProvider, UserProvider } from './shared/contexts'
 import { router } from './router'
+import { useUserStore } from './shared/store/user'
 
 export const App = () => {
-  const apiUrl = localStorage.getItem('apiUrl')
-  const idInstance = localStorage.getItem('idInstance')
-  const apiTokenInstance = localStorage.getItem('apiTokenInstance')
-  const value =
-    apiUrl && idInstance && apiTokenInstance ? { apiTokenInstance, apiUrl, idInstance } : undefined
-  return (
-    <UserProvider defaultUser={value}>
-      <ChatProvider>
-        <RouterProvider router={router} />
-      </ChatProvider>
-    </UserProvider>
-  )
+  const setUser = useUserStore.use.set()
+  const user = JSON.parse(localStorage.getItem('session') ?? '{}')
+
+  if (user) setUser({ user })
+
+  return <RouterProvider router={router} />
 }

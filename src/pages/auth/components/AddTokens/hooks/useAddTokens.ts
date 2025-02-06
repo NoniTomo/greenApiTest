@@ -1,20 +1,22 @@
-import { useUser } from '@/shared/contexts'
 import { useStage } from '../../../contexts'
 import { useForm } from 'react-hook-form'
 import { useGetStateInstanceMutation, useGetWaInstanceMutation } from '@/shared/api/hooks'
+import { useUserStore } from '@/shared/store/user'
 
 export const useAddTokens = () => {
   const stage = useStage()
-  const userContext = useUser()
+  const setUser = useUserStore.use.set()
+  const user = useUserStore.use.user()
+
   const getStateInstanceMutation = useGetStateInstanceMutation()
   const getWaInstanceMutation = useGetWaInstanceMutation()
 
   const form = useForm({
     mode: 'onChange',
     defaultValues: {
-      apiUrl: userContext.value?.apiUrl ?? '',
-      idInstance: userContext.value?.idInstance ?? '',
-      apiTokenInstance: userContext.value?.apiTokenInstance ?? ''
+      apiUrl: user?.apiUrl ?? '',
+      idInstance: user?.idInstance ?? '',
+      apiTokenInstance: user?.apiTokenInstance ?? ''
     }
   })
 
@@ -33,12 +35,16 @@ export const useAddTokens = () => {
         idInstance: data.idInstance
       }
     })
-    localStorage.setItem('apiTokenInstance', data.apiTokenInstance)
-    localStorage.setItem('apiUrl', data.apiUrl)
-    localStorage.setItem('idInstance', data.idInstance)
-    localStorage.setItem('phone', `${response.data.phone}@c.us`)
+    localStorage.setItem(
+      'session',
+      JSON.stringify({
+        apiTokenInstance: data.apiTokenInstance,
+        apiUrl: data.apiUrl,
+        idInstance: data.idInstance
+      })
+    )
     stage.set('phoneNumber')
-    userContext.set({ ...data, phone: `${response.data.phone}@c.us` })
+    setUser({ user: { ...data, phone: response.data.phone } })
   }
 
   return {

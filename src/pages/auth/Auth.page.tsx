@@ -9,7 +9,7 @@ export const Auth = () => {
         completedStages: []
       }}
     >
-      <section className="flex h-screen w-screen items-center justify-center">
+      <section className="flex h-screen w-screen items-center justify-center bg-[#1a2329] text-background">
         <div className="max-w-[400px]">
           <Stepper />
         </div>

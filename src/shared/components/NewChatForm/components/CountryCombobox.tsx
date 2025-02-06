@@ -31,16 +31,16 @@ export function CountryCombobox({ className, value, setValue }: CountryComboboxP
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={`justify-between ${className}`}
+          className={`justify-between bg-zinc-700 hover:bg-zinc-700 hover:text-background ${className}`}
         >
           {value
             ? COUNTRY_COMBOBOX.find((country) => country.value === value)?.label
-            : 'Select country...'}
+            : 'Выберите страну...'}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[150px] p-0">
         <Command>
-          <CommandInput placeholder="Search country..." className="h-9" />
+          <CommandInput placeholder="Найдите страну..." className="h-9" />
           <CommandList>
             <CommandEmpty>No framework found.</CommandEmpty>
             <CommandGroup>

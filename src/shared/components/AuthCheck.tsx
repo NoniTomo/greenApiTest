@@ -2,18 +2,16 @@ import React from 'react'
 import { Navigate } from 'react-router-dom'
 
 import { ROUTES } from '../constants'
-import { useChat } from '../contexts'
+import { useUserStore } from '../store/user'
 
 export interface AuthCheckProps {
   children: React.ReactNode
 }
 
 export const AuthCheck = ({ children }: AuthCheckProps) => {
-  const chatContext = useChat()
-  const userContext = useChat()
-  const isAuth = chatContext.value && userContext.value
+  const user = useUserStore.use.user()
 
-  if (isAuth) {
+  if (user?.apiTokenInstance) {
     return <>{children}</>
   }
 

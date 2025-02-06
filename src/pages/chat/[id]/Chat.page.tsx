@@ -1,25 +1,32 @@
-import SendIcon from '@/assets/icons/send.svg'
+import SendIcon from '@/assets/icons/send.svg?react'
 
 import { Button, TextField } from '@/shared/components'
-import { useChatComponent } from './hooks/useChat'
+import { useChat } from './hooks/useChat'
+import clsx from 'clsx'
 
 export const Chat = () => {
-  const { state, functions } = useChatComponent()
+  const { state, functions } = useChat()
 
   return (
-    <div className="flex flex-col justify-center w-screen h-screen">
+    <div className="flex flex-col w-full justify-center h-screen">
       <header className="p-5 flex gap-2 text-xl bg-[#1a2329] text-background">
         <div className="h-8 w-8 rounded-full bg-white" />
-        <p>{state.chatContext.value?.phone}</p>
+        <p>{state.chat.phone}</p>
       </header>
       <div className="w-full h-full overflow-auto flex flex-col-reverse gap-3 p-5 bg-[url('/public/images/chatBackground.png')] bg-no-repeat bg-cover">
         {state.messages.map((message) => (
           <div
             key={message.idMessage}
-            className={`w-full flex ${message.sender !== state.userContext.value?.phone ? 'justify-start ' : 'justify-end sm:justify-start'}`}
+            className={clsx(
+              'w-full flex',
+              message.sender !== state.user?.phone ? 'justify-start ' : 'justify-end sm:justify-start'
+            )}
           >
             <div
-              className={`h-max static p-2 rounded-xl max-w-[80%] sm:max-w-sm text-balance ${message.sender !== state.userContext.value?.phone ? 'bg-green-300 ' : 'bg-blue-300'}`}
+              className={clsx(
+                'h-max static p-2 rounded-xl max-w-[80%] sm:max-w-sm text-balance',
+                message.sender === state.user?.phone ? 'bg-green-300 ' : 'bg-blue-300'
+              )}
             >
               <p>{message.message}</p>
             </div>
@@ -38,14 +45,14 @@ export const Chat = () => {
           id="apiUrl"
           isDisabled={false}
           isRequired={true}
-          classNameInput="bg-zinc-700"
+          classNameInput="bg-zinc-700 text-background"
         />
         <Button
           type="submit"
           disabled={!state.form.formState.isDirty}
           className="h-full rounded-full flex items-center justify-center bg-transparent text-background m-0 p-0"
         >
-          <SendIcon />
+          <SendIcon className="scale-[2]" />
         </Button>
       </form>
     </div>

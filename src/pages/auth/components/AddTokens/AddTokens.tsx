@@ -3,7 +3,7 @@ import { TextField } from '@/shared/components'
 import { useAddTokens } from './hooks/useAddTokens'
 
 export const AddTokens = () => {
-  const {state, functions} = useAddTokens()
+  const { state, functions } = useAddTokens()
 
   return (
     <>
@@ -11,36 +11,42 @@ export const AddTokens = () => {
         <TextField
           id="apiUrl"
           register={state.form.register('apiUrl', {
-            required: "required",
+            required: 'Поле  обязательное!'
           })}
-          label='API url'
+          label="API url"
           error={state.form.formState.errors.apiUrl?.message}
           isDisabled={false}
           isRequired={true}
+          classNameInput="bg-zinc-700 text-background"
         />
         <TextField
           id="idInstance"
           register={state.form.register('idInstance', {
-            required: "required",
+            required: 'Поле  обязательное!'
           })}
-          label='ID Instance'
+          label="ID Instance"
           error={state.form.formState.errors.idInstance?.message}
           isDisabled={false}
           isRequired={true}
+          classNameInput="bg-zinc-700 text-background"
         />
         <TextField
           id="apiTokenInstance"
           register={state.form.register('apiTokenInstance', {
-            required: "required",
+            required: 'Поле  обязательное!'
           })}
-          label='API Token Instance'
+          label="API Token Instance"
           error={state.form.formState.errors.apiTokenInstance?.message}
           isDisabled={false}
           isRequired={true}
+          classNameInput="bg-zinc-700 text-background"
         />
-      <Button type='submit'>
-        Next
-      </Button>
+        <Button
+          className="p-5 rounded-xl bg-green-700 hover:bg-green-800  text-background"
+          type="submit"
+        >
+          Далее
+        </Button>
       </form>
     </>
   )

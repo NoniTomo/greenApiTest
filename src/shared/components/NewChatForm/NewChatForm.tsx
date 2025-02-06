@@ -23,8 +23,8 @@ export const NewChatForm = ({ onSubmitAction }: NewChatFormProps) => {
               'phone',
               `+${COUNTRY_NUMBERS[state.countryValue].code} ${COUNTRY_NUMBERS[state.countryValue].templatePhone}`,
               {
-                required: 'required',
-                validate: (value) => (validateMask(value) ? true : 'is Mobile Phone')
+                required: 'Поле обязательное',
+                validate: (value) => (validateMask(value) ? true : 'Введите номер телефона полностью')
               }
             )}
             type="email"
@@ -40,9 +40,7 @@ export const NewChatForm = ({ onSubmitAction }: NewChatFormProps) => {
             className="absolute top-2 left-2 w-12"
           />
         </div>
-        <Button className="p-5 w-full rounded-xl bg-green-700 hover:bg-green-800  text-background">
-          Добавить
-        </Button>
+        <Button className="p-5 w-full rounded-xl bg-green-700 hover:bg-green-800">Добавить</Button>
       </form>
     </>
   )

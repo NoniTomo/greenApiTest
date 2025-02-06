@@ -17,7 +17,7 @@ export const AddTokens = () => {
           error={state.form.formState.errors.apiUrl?.message}
           isDisabled={false}
           isRequired={true}
-          classNameInput="bg-zinc-700 text-background"
+          classNameInput="bg-zinc-700 "
         />
         <TextField
           id="idInstance"
@@ -28,7 +28,7 @@ export const AddTokens = () => {
           error={state.form.formState.errors.idInstance?.message}
           isDisabled={false}
           isRequired={true}
-          classNameInput="bg-zinc-700 text-background"
+          classNameInput="bg-zinc-700 "
         />
         <TextField
           id="apiTokenInstance"
@@ -39,12 +39,9 @@ export const AddTokens = () => {
           error={state.form.formState.errors.apiTokenInstance?.message}
           isDisabled={false}
           isRequired={true}
-          classNameInput="bg-zinc-700 text-background"
+          classNameInput="bg-zinc-700 "
         />
-        <Button
-          className="p-5 rounded-xl bg-green-700 hover:bg-green-800  text-background"
-          type="submit"
-        >
+        <Button className="p-5 rounded-xl bg-green-700 hover:bg-green-800" type="submit">
           Далее
         </Button>
       </form>

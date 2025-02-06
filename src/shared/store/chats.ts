@@ -16,7 +16,6 @@ const useChatsStoreBase = create<State & Action>((set) => ({
   entities: {},
   ids: [],
   add: (chat: Chat) => {
-    console.log(chat)
     set((state) => ({
       ...state,
       entities: {

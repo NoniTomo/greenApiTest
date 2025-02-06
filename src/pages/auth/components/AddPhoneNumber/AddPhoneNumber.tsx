@@ -15,7 +15,7 @@ export const AddPhoneNumber = () => {
         }}
       />
       <Button
-        className="p-5 w-full rounded-xl bg-green-700 hover:bg-green-800  text-background"
+        className="p-5 w-full rounded-xl bg-green-700 hover:bg-green-800"
         onClick={() => stage.set('tokens')}
         type="submit"
       >

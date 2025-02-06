@@ -38,12 +38,12 @@ export const useMain = () => {
 
       try {
         const response = await getReceiveNotificationQuery.refetch()
-
-        if (response.data?.data?.body.messageData) {
+        const data = response.data?.data
+        if (data) {
           const text =
-            typeof response.data.data.body.messageData.extendedTextMessageData !== 'undefined'
-              ? response.data.data.body.messageData.extendedTextMessageData.text
-              : response.data.data.body.messageData.textMessageData.textData
+            'extendedTextMessageData' in data.body.messageData
+              ? data.body.messageData.extendedTextMessageData.text
+              : data.body.messageData.textMessageData.textData
           console.log(text)
           console.log('chatIds', chatIds)
           console.log(
@@ -52,43 +52,43 @@ export const useMain = () => {
           )
           if (chatIds.findIndex((id) => id === response.data?.data?.body.senderData.chatId) !== -1) {
             console.log('чат существует', {
-              idMessage: response.data.data.body.idMessage,
-              chatId: response.data.data.body.senderData.chatId,
-              sender: response.data.data.body.senderData.sender,
-              timestamp: response.data.data.body.timestamp,
+              idMessage: data.body.idMessage,
+              chatId: data.body.senderData.chatId,
+              sender: data.body.senderData.sender,
+              timestamp: data.body.timestamp,
               message: text
             })
 
             addMessage({
-              idMessage: response.data.data.body.idMessage,
-              chatId: response.data.data.body.senderData.chatId,
-              sender: response.data.data.body.senderData.sender,
-              timestamp: response.data.data.body.timestamp,
+              idMessage: data.body.idMessage,
+              chatId: data.body.senderData.chatId,
+              sender: data.body.senderData.sender,
+              timestamp: data.body.timestamp,
               message: text
             })
           } else if (
             chatIds.findIndex((id) => id === response.data?.data?.body.senderData.chatId) === -1
           ) {
             console.log('чата нет', {
-              idMessage: response.data.data.body.idMessage,
-              chatId: response.data.data.body.senderData.chatId,
-              sender: response.data.data.body.senderData.sender,
-              timestamp: response.data.data.body.timestamp,
+              idMessage: data.body.idMessage,
+              chatId: data.body.senderData.chatId,
+              sender: data.body.senderData.sender,
+              timestamp: data.body.timestamp,
               message: text
             })
             addChat({
-              chatId: response.data.data.body.senderData.chatId,
-              phone: String(parseInt(response.data.data.body.senderData.sender))
+              chatId: data.body.senderData.chatId,
+              phone: String(parseInt(data.body.senderData.sender))
             })
             addChatInMessage({
-              chatId: response.data.data.body.senderData.chatId,
-              phone: String(parseInt(response.data.data.body.senderData.sender))
+              chatId: data.body.senderData.chatId,
+              phone: String(parseInt(data.body.senderData.sender))
             })
             addMessage({
-              idMessage: response.data.data.body.idMessage,
-              chatId: response.data.data.body.senderData.chatId,
-              sender: response.data.data.body.senderData.sender,
-              timestamp: response.data.data.body.timestamp,
+              idMessage: data.body.idMessage,
+              chatId: data.body.senderData.chatId,
+              sender: data.body.senderData.sender,
+              timestamp: data.body.timestamp,
               message: text
             })
           }

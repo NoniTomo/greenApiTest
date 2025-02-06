@@ -21,10 +21,10 @@ export const Main = () => {
   const { state, functions } = useMain()
 
   return (
-    <div className="grid grid-cols-[auto,1fr] w-screen bg-[#1a2329] text-background">
+    <div className="grid grid-cols-[auto,1fr] w-screen">
       <>
         {state.open && (
-          <div className="flex flex-col justify-center min-w-[250px] max-w-[400px] h-screen border-r-[1px] border-secondary">
+          <div className="flex flex-col justify-center min-w-[250px] sm:max-w-[400px] h-screen border-r-[1px] border-secondary w-screen sm:w-min">
             <div className="flex justify-between text-2xl p-5 ">
               <p>Чаты</p>
               <div className="flex gap-3">
@@ -60,7 +60,7 @@ export const Main = () => {
                   key={chatId}
                   className={({ isActive }) =>
                     clsx(
-                      'px-5 w-full flex text-background hover:text-slate-400',
+                      'px-5 w-full flex text-foreground hover:text-slate-400',
                       isActive && 'bg-green-200 bg-opacity-20'
                     )
                   }
@@ -74,7 +74,7 @@ export const Main = () => {
             </div>
             <div className="p-5">
               <Button
-                className="p-5 w-full rounded-xl bg-green-700 hover:bg-green-800  text-background"
+                className="p-5 w-full rounded-xl bg-green-700 hover:bg-green-800  "
                 onClick={() => functions.onLeave()}
                 type="submit"
               >
@@ -93,7 +93,9 @@ export const Main = () => {
             </Button>
           </div>
         )}
-        <Outlet />
+        <div className={clsx(state.open && 'hidden sm:block', !state.open && 'block')}>
+          <Outlet />
+        </div>
       </>
     </div>
   )

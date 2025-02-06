@@ -17,8 +17,6 @@ const useMessagesStoreBase = create<State & Action>((set) => ({
   entities: {},
   idsMessagesByChats: {},
   add: (message: Message) => {
-    console.log(message)
-
     set((state) => ({
       ...state,
       entities: {
@@ -32,7 +30,6 @@ const useMessagesStoreBase = create<State & Action>((set) => ({
     }))
   },
   addChat: (chat: Chat) => {
-    console.log(chat)
     set((state) => ({
       ...state,
       idsMessagesByChats: {

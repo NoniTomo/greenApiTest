@@ -43,8 +43,6 @@ export const useChat = () => {
       form.reset()
     }
   }
-
-  console.log(idsMessagesByChat)
   return {
     state: { form, messages: idsMessagesByChat, user, chat },
     functions: { onSubmit }

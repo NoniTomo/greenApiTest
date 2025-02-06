@@ -6,13 +6,11 @@ import clsx from 'clsx'
 
 export const Chat = () => {
   const { state, functions } = useChat()
-  console.log(state.messages)
-  console.log(state.user?.sender)
+
   return (
     <div className="flex flex-col w-full justify-center h-screen">
-      <header className="p-5 flex gap-2 text-xl bg-[#1a2329] text-background">
-        <div className="h-8 w-8 rounded-full bg-white" />
-        <p>{state.chat.phone}</p>
+      <header className="p-5 flex gap-2 border-b-[1px]">
+        <p className="my-auto text-lg">{state.chat.phone}</p>
       </header>
       <div className="w-full h-full overflow-auto flex flex-col justify-end gap-3 p-5 bg-[url('/public/images/chatBackground.png')] bg-no-repeat bg-cover">
         {state.messages.map((message) => (
@@ -35,7 +33,7 @@ export const Chat = () => {
         ))}
       </div>
       <form
-        className="w-full h-min flex flex-nowrap gap-5 p-5 border-t-2 border-solid border-secondary bg-[#1a2329]"
+        className="w-full h-min flex flex-nowrap gap-5 p-5 border-t-2"
         onSubmit={state.form.handleSubmit(functions.onSubmit)}
       >
         <TextField
@@ -51,7 +49,7 @@ export const Chat = () => {
         <Button
           type="submit"
           disabled={!state.form.formState.isDirty}
-          className="h-full rounded-full flex items-center justify-center bg-transparent text-background m-0 p-0"
+          className="h-full bg-transparent w-10"
         >
           <SendIcon className="scale-[2]" />
         </Button>

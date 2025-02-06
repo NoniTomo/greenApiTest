@@ -27,7 +27,6 @@ export const NewChatForm = ({ onSubmitAction }: NewChatFormProps) => {
                 validate: (value) => (validateMask(value) ? true : 'Некорректный номер телефона')
               }
             )}
-            type="email"
             placeholder={`+${COUNTRY_NUMBERS[state.countryValue].code} ${COUNTRY_NUMBERS[state.countryValue].templatePhone}`}
             error={state.form.formState.errors.phone?.message}
             isDisabled={false}

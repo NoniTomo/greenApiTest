@@ -7,9 +7,18 @@ import { ROUTES } from '@/shared/constants/routes'
 import { AuthCheck } from './shared/components'
 import { useChatsStore } from './shared/store/chats'
 import { useMessagesStore } from './shared/store/messages'
+import { useUserStore } from './shared/store/user'
 
 export const router = createBrowserRouter([
   {
+    loader: async () => {
+      const setUser = useUserStore.getState().set
+      const user = JSON.parse(localStorage.getItem('session') ?? '{}')
+
+      if (user) {
+        setUser({ user })
+      }
+    },
     path: ROUTES.ROOT,
     element: (
       <AuthCheck>

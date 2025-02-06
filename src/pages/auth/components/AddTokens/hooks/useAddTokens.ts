@@ -40,7 +40,9 @@ export const useAddTokens = () => {
       JSON.stringify({
         apiTokenInstance: data.apiTokenInstance,
         apiUrl: data.apiUrl,
-        idInstance: data.idInstance
+        idInstance: data.idInstance,
+        sender: response.data.phone,
+        phone: String(parseInt(response.data.phone))
       })
     )
     stage.set('phoneNumber')

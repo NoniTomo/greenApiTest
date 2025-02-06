@@ -10,12 +10,15 @@ type State = {
 type Action = {
   add: (message: Message) => void
   addChat: (chat: Chat) => void
+  reset: () => void
 }
 
 const useMessagesStoreBase = create<State & Action>((set) => ({
   entities: {},
   idsMessagesByChats: {},
   add: (message: Message) => {
+    console.log(message)
+
     set((state) => ({
       ...state,
       entities: {
@@ -29,6 +32,7 @@ const useMessagesStoreBase = create<State & Action>((set) => ({
     }))
   },
   addChat: (chat: Chat) => {
+    console.log(chat)
     set((state) => ({
       ...state,
       idsMessagesByChats: {
@@ -36,6 +40,9 @@ const useMessagesStoreBase = create<State & Action>((set) => ({
         [chat.chatId]: []
       }
     }))
+  },
+  reset: () => {
+    set(() => ({ entities: {}, idsMessagesByChats: {} }))
   }
 }))
 

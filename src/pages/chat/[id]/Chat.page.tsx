@@ -6,26 +6,27 @@ import clsx from 'clsx'
 
 export const Chat = () => {
   const { state, functions } = useChat()
-
+  console.log(state.messages)
+  console.log(state.user?.sender)
   return (
     <div className="flex flex-col w-full justify-center h-screen">
       <header className="p-5 flex gap-2 text-xl bg-[#1a2329] text-background">
         <div className="h-8 w-8 rounded-full bg-white" />
         <p>{state.chat.phone}</p>
       </header>
-      <div className="w-full h-full overflow-auto flex flex-col-reverse gap-3 p-5 bg-[url('/public/images/chatBackground.png')] bg-no-repeat bg-cover">
+      <div className="w-full h-full overflow-auto flex flex-col justify-end gap-3 p-5 bg-[url('/public/images/chatBackground.png')] bg-no-repeat bg-cover">
         {state.messages.map((message) => (
           <div
             key={message.idMessage}
             className={clsx(
               'w-full flex',
-              message.sender !== state.user?.phone ? 'justify-start ' : 'justify-end sm:justify-start'
+              message.sender !== state.user?.sender ? 'justify-start ' : 'justify-end sm:justify-start'
             )}
           >
             <div
               className={clsx(
                 'h-max static p-2 rounded-xl max-w-[80%] sm:max-w-sm text-balance',
-                message.sender === state.user?.phone ? 'bg-green-300 ' : 'bg-blue-300'
+                message.sender === state.user?.sender ? 'bg-green-300 ' : 'bg-blue-300'
               )}
             >
               <p>{message.message}</p>

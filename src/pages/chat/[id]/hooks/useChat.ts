@@ -1,16 +1,17 @@
 import { usePostSendMessageMutation } from '@/shared/api'
 
 import { useChatsStore } from '@/shared/store/chats'
+import { useMessagesStore } from '@/shared/store/messages'
 import { useUserStore } from '@/shared/store/user'
-import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
 
 export const useChat = () => {
   const user = useUserStore.use.user()
-  const [messages, setMessages] = React.useState<Message[]>([])
   const params = useParams()
   const chat = useChatsStore.use.entities()[params.id!]
+  const addMessage = useMessagesStore.use.add()
+  const idsMessagesByChat = useMessagesStore.use.idsMessagesByChats()[params.id!]
 
   const form = useForm({
     mode: 'onChange',
@@ -32,22 +33,20 @@ export const useChat = () => {
           message: data.message
         }
       })
-      setMessages((prevMessages) => [
-        {
-          idMessage: response.data.idMessage,
-          chatId: chat.chatId,
-          sender: user?.phone ?? '',
-          timestamp: Date.now(),
-          message: data.message
-        },
-        ...prevMessages
-      ])
+      addMessage({
+        idMessage: response.data.idMessage,
+        chatId: chat.chatId,
+        sender: user?.phone ?? '',
+        timestamp: Date.now(),
+        message: data.message
+      })
       form.reset()
     }
   }
 
+  console.log(idsMessagesByChat)
   return {
-    state: { form, messages, user, chat },
+    state: { form, messages: idsMessagesByChat, user, chat },
     functions: { onSubmit }
   }
 }

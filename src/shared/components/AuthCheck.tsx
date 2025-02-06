@@ -11,7 +11,7 @@ export interface AuthCheckProps {
 export const AuthCheck = ({ children }: AuthCheckProps) => {
   const user = useUserStore.use.user()
 
-  if (user?.apiTokenInstance) {
+  if (user?.apiTokenInstance && user?.apiUrl && user?.idInstance && user?.phone) {
     return <>{children}</>
   }
 

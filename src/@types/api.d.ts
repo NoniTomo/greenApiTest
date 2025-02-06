@@ -26,12 +26,19 @@ interface GetReceiveNotificationResponse {
       senderName: string
       senderContactName: string
     }
-    messageData: {
-      typeMessage: 'textMessage'
-      extendedTextMessageData: {
-        text: string
-      }
-    }
+    messageData:
+      | {
+          typeMessage: string
+          extendedTextMessageData: {
+            text: string
+          }
+        }
+      | {
+          typeMessage: string
+          textMessageData: {
+            textData: string
+          }
+        }
   }
 }
 

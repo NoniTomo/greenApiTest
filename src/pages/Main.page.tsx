@@ -21,11 +21,11 @@ export const Main = () => {
   const { state, functions } = useMain()
 
   return (
-    <div className="grid grid-cols-[auto,1fr] w-screen">
+    <div className="grid grid-cols-[auto,1fr] w-screen bg-[#1a2329] text-background">
       <>
         {state.open && (
-          <div className="flex flex-col justify-center min-w-[250px] max-w-[400px] h-screen bg-[#1a2329] text-background">
-            <div className="flex justify-between text-2xl p-5">
+          <div className="flex flex-col justify-center min-w-[250px] max-w-[400px] h-screen border-r-[1px] border-secondary">
+            <div className="flex justify-between text-2xl p-5 ">
               <p>Чаты</p>
               <div className="flex gap-3">
                 <Dialog open={state.openNumberModal} onOpenChange={functions.setOpenNumberModal}>
@@ -72,10 +72,19 @@ export const Main = () => {
                 </NavLink>
               ))}
             </div>
+            <div className="p-5">
+              <Button
+                className="p-5 w-full rounded-xl bg-green-700 hover:bg-green-800  text-background"
+                onClick={() => functions.onLeave()}
+                type="submit"
+              >
+                Выйти
+              </Button>
+            </div>
           </div>
         )}
         {!state.open && (
-          <div className="bg-[#1a2329] text-background py-5 px-2 h-screen">
+          <div className="py-5 px-2 h-screen border-r-[1px] border-secondary">
             <Button
               className="p-0 w-10 bg-transparent hover:bg-transparent focus:border-none hover:border-none"
               onClick={() => functions.setOpen(!state.open)}

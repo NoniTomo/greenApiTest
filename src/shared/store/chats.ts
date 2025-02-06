@@ -9,20 +9,25 @@ type State = {
 
 type Action = {
   add: (chat: Chat) => void
+  reset: () => void
 }
 
 const useChatsStoreBase = create<State & Action>((set) => ({
   entities: {},
   ids: [],
   add: (chat: Chat) => {
+    console.log(chat)
     set((state) => ({
       ...state,
       entities: {
         ...state.entities,
-        [chat.chatId]: { ...chat }
+        [chat.chatId]: chat
       },
       ids: [chat.chatId, ...state.ids]
     }))
+  },
+  reset: () => {
+    set(() => ({ entities: {}, ids: [] }))
   }
 }))
 
